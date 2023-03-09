@@ -11,12 +11,14 @@ class FormTextField extends StatelessWidget {
     this.prefixIcon,
     this.obscureText = false,
     this.suffixIcon,
+    this.onChange
   });
 
   String keyName;
   String hintText;
   Function onValidate;
   Function onSaved;
+  Function? onChange;
   IconData? prefixIcon;
   bool obscureText;
   Widget? suffixIcon;
@@ -39,6 +41,7 @@ class FormTextField extends StatelessWidget {
           borderRadius: 10,
           obscureText: obscureText,
           suffixIcon: suffixIcon,
+          onChange: onChange
         )
     );
   }

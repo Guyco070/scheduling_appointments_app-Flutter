@@ -94,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Center(
             child: FormHelper.submitButton(
               "Login", 
-              () {},
+              () {
+                Navigator.of(context).pushNamed("user_home_page");
+              },
               btnColor: Theme.of(context).colorScheme.primary,
               txtColor: Colors.white,
               borderColor: Colors.white,

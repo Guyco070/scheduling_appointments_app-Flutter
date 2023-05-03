@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  Logo(this.assetName, {super.key});
+  Logo(this.assetName, {super.key, this.buttomRadius = 100});
   String assetName;
+  double buttomRadius;
   
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 6,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
+      decoration: BoxDecoration(
+          gradient: const LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.bottomCenter,
               colors: [
@@ -18,12 +19,12 @@ class Logo extends StatelessWidget {
                 Colors.white,
               ]),
           borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(100),
-              bottomRight: Radius.circular(100))),
+              bottomLeft: Radius.circular(buttomRadius),
+              bottomRight: Radius.circular(buttomRadius))),
       child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(100),
-              bottomRight: Radius.circular(100)),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(buttomRadius),
+              bottomRight: Radius.circular(buttomRadius)),
           child: Image.asset(
             assetName,
             fit: BoxFit.cover,

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:scheduling_appointments_app/screens/auth_screen.dart';
 import 'package:scheduling_appointments_app/screens/login_screen.dart';
 import 'package:scheduling_appointments_app/screens/register_screen.dart';
+import 'package:scheduling_appointments_app/screens/user_home_page.dart';
+import 'package:scheduling_appointments_app/screens/about_screen.dart';
+
 import 'package:snippet_coder_utils/hex_color.dart';
 
 void main() {
@@ -24,7 +27,9 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
-        RegisterScreen.routeName:(context) => const RegisterScreen()
+        RegisterScreen.routeName:(context) => const RegisterScreen(),
+        UserHomePage.routeName:(context) => const UserHomePage(),
+        AboutScreen.routeName:(context) => const AboutScreen(),
       },
     );
   }

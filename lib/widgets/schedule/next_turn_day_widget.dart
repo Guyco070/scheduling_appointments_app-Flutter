@@ -9,6 +9,6 @@ class NextTurnDayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenSection(title: "Quick Schedule", child: TimeListWidget());
+    return ScreenSection(title: "Quick Schedule", child: const TimeListWidget());
   }
 }

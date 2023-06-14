@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:scheduling_appointments_app/utils/config.dart';
 
 class TimeWidget extends StatefulWidget {
-  TimeWidget(this.timeText ,{super.key, required this.isChosen, required this.setChosenTime});
-  String timeText;
-  bool isChosen;
-  Function setChosenTime;
+  const TimeWidget(this.timeText ,{super.key, required this.isChosen, required this.setChosenTime});
+  final String timeText;
+  final bool isChosen;
+  final Function setChosenTime;
 
   @override
   State<TimeWidget> createState() => _TimeWidgetState();

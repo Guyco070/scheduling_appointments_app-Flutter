@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:scheduling_appointments_app/utils/config.dart';
 import 'package:scheduling_appointments_app/widgets/animated/custom_expanded_list_view.dart';
 import 'package:scheduling_appointments_app/widgets/schedule/DatePickerWidget.dart';

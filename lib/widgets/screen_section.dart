@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scheduling_appointments_app/utils/config.dart';
-import 'package:scheduling_appointments_app/widgets/my_work/work_image_widget.dart';
 
 class ScreenSection extends StatelessWidget {
-  ScreenSection({super.key,required this.title, required this.child,});
+  const ScreenSection({super.key,required this.title, required this.child,});
 
-  String title;
-  Widget child;
+  final String title;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

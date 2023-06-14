@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 
 class WorkImageWidget extends StatelessWidget {
-  WorkImageWidget({
+  const WorkImageWidget({
     super.key,
     required this.assetPath
   });
 
-  String assetPath;
+  final String assetPath;
 
   @override
   Widget build(BuildContext context) {

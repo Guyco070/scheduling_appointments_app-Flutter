@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ScreenTopic extends StatelessWidget {
-  ScreenTopic(this.text, {super.key});
-  String text;
+  const ScreenTopic(this.text, {super.key});
+  final String text;
   
   @override
   Widget build(BuildContext context) {

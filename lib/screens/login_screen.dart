@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:scheduling_appointments_app/screens/register_screen.dart';
+import 'package:scheduling_appointments_app/widgets/register_screen.dart';
+import 'package:scheduling_appointments_app/widgets/animated/expanded_section.dart';
 import 'package:scheduling_appointments_app/widgets/form_text_field.dart';
 import 'package:scheduling_appointments_app/widgets/logo.dart';
 import 'package:scheduling_appointments_app/widgets/screen_topic.dart';
 import 'package:scheduling_appointments_app/widgets/span_button.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
+
+enum AuthMode { signup, login }
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,12 +18,25 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin{
+  AuthMode _authMode = AuthMode.login;
   bool isAPICallProcess = false;
   bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   String? userName;
   String? password;
+
+  void _switchAuthMode() {
+    if (_authMode == AuthMode.login) {
+      setState(() {
+        _authMode = AuthMode.signup;
+      });
+    } else {
+      setState(() {
+        _authMode = AuthMode.login;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Logo('assets/images/app_logo.jpg'),
-          ScreenTopic('Login'),
+          ScreenTopic(_authMode == AuthMode.login ? 'Login' : 'Sign up'),
           FormTextField(
             "userName", 
             "UserName",
@@ -85,17 +101,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   hidePassword ? Icons.visibility_off : Icons.visibility,
             ))
           ),
+          ExpandedSection(
+            expand: _authMode == AuthMode.signup,
+            child: const RegisterWidget()
+          ),
           SpanButton(
             alignment: Alignment.bottomRight,
-            buttonText: "Forget Password ?",
-            onTap: () => print('Forget Password'),
+            buttonText: "Forgot Password ?",
+            onTap: () => print('Forgot Password'),
           ),
           const SizedBox(height: 20,),
           Center(
             child: FormHelper.submitButton(
-              "Login", 
-              () {
-                Navigator.of(context).pushNamed("user_home_page");
+              _authMode == AuthMode.login
+               ? "Login"
+               : "Register", 
+              _authMode == AuthMode.login
+              ? () {
+                globalFormKey.currentState!.validate();
+                // Navigator.of(context).pushNamed("user_home_page");
+              }
+              : () {
+                globalFormKey.currentState!.validate();
               },
               btnColor: Theme.of(context).colorScheme.primary,
               txtColor: Colors.white,
@@ -105,9 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 20,),
           SpanButton(
-            text: "Don't have an acount? ",
-            buttonText: "Sign up",
-            onTap: () => Navigator.of(context).pushNamed(RegisterScreen.routeName),
+            text: '${_authMode == AuthMode.login ? "Don't " : "Already"} have an acount? ',
+            buttonText: _authMode == AuthMode.login ? "Sign up" : "Login",
+            onTap: _switchAuthMode,
           ),
         ],
       ),

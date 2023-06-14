@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class ExpandedSection extends StatefulWidget {
+  const ExpandedSection({super.key, this.expand = false, required this.child});
 
   final Widget child;
   final bool expand;
-  const ExpandedSection({super.key, this.expand = false, required this.child});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExpandedSectionState createState() => _ExpandedSectionState();
 }
 

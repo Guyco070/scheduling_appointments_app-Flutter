@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scheduling_appointments_app/screens/auth_screen.dart';
 import 'package:scheduling_appointments_app/screens/login_screen.dart';
-import 'package:scheduling_appointments_app/screens/register_screen.dart';
 import 'package:scheduling_appointments_app/screens/user_home_page.dart';
 import 'package:scheduling_appointments_app/screens/about_screen.dart';
 
@@ -22,12 +20,10 @@ class MyApp extends StatelessWidget {
       theme: Theme.of(context).copyWith(
           colorScheme: Theme.of(context).colorScheme.copyWith(
           primary: HexColor("#76706B"),
-          
         )
       ),
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
-        RegisterScreen.routeName:(context) => const RegisterScreen(),
         UserHomePage.routeName:(context) => const UserHomePage(),
         AboutScreen.routeName:(context) => const AboutScreen(),
       },

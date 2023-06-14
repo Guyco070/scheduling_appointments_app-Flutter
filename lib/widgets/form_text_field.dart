@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 
 class FormTextField extends StatelessWidget {
-  FormTextField(
+  const FormTextField(
     this.keyName,
     this.hintText,
     this.onValidate,
@@ -14,14 +14,14 @@ class FormTextField extends StatelessWidget {
     this.onChange
   });
 
-  String keyName;
-  String hintText;
-  Function onValidate;
-  Function onSaved;
-  Function? onChange;
-  IconData? prefixIcon;
-  bool obscureText;
-  Widget? suffixIcon;
+  final String keyName;
+  final String hintText;
+  final Function onValidate;
+  final Function onSaved;
+  final Function? onChange;
+  final IconData? prefixIcon;
+  final bool obscureText;
+  final Widget? suffixIcon;
 
   bool get isPrefixIcon => prefixIcon != null;
 
@@ -41,7 +41,10 @@ class FormTextField extends StatelessWidget {
           borderRadius: 10,
           obscureText: obscureText,
           suffixIcon: suffixIcon,
-          onChange: onChange
+          onChange: onChange,
+
+          borderErrorColor: Colors.white,
+          borderFocusedErrorColor: Colors.white,
         )
     );
   }

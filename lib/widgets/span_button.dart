@@ -2,17 +2,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SpanButton extends StatelessWidget {
-  SpanButton(
+  const SpanButton(
       {super.key,
       this.alignment = Alignment.center,
       this.text,
       this.buttonText,
       this.onTap
       });
-  String? buttonText;
-  String? text;
-  Alignment alignment;
-  void Function()? onTap;
+  final String? buttonText;
+  final String? text;
+  final Alignment alignment;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SpanButton extends StatelessWidget {
           text: TextSpan(
               style: const TextStyle(
                 color: Colors.grey,
-                fontSize: 14.0,
+                fontSize: 16.0,
               ),
               children: <TextSpan>[
                 TextSpan(text: text),
@@ -33,6 +33,7 @@ class SpanButton extends StatelessWidget {
                     style: const TextStyle(
                       color: Colors.white,
                       decoration: TextDecoration.underline,
+                      fontSize: 16
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = onTap)

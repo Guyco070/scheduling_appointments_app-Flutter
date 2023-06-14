@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  Logo(this.assetName, {super.key, this.buttomRadius = 100});
-  String assetName;
-  double buttomRadius;
+  const Logo(this.assetName, {super.key, this.buttomRadius = 100});
+  final String assetName;
+  final double buttomRadius;
   
   @override
   Widget build(BuildContext context) {

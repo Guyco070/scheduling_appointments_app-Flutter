@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scheduling_appointments_app/utils/config.dart';
 import 'package:scheduling_appointments_app/widgets/my_work/work_image_widget.dart';
 import 'package:scheduling_appointments_app/widgets/screen_section.dart';
 

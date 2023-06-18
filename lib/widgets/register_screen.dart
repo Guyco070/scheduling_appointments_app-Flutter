@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:scheduling_appointments_app/widgets/form_text_field.dart';
 
 class RegisterWidget extends StatefulWidget {
-  const RegisterWidget({super.key});
+  const RegisterWidget({super.key, this.hidePassword = true});
   static String routeName = '/register';
+  final bool hidePassword;
 
   @override
   State<RegisterWidget> createState() => _RegisterScreenState();
@@ -11,7 +12,6 @@ class RegisterWidget extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterWidget> {
   bool isAPICallProcess = false;
-  bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   String? userName;
   String? password;
@@ -35,36 +35,12 @@ class _RegisterScreenState extends State<RegisterWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FormTextField("password", "Password", (onValidateVal) {
-              if (onValidateVal.isEmpty) {
-                return "Password can't be empty";
-              } else if ((onValidateVal as String).length < 8) {
-                return "Password length must be 8 letters or more";
-              }
-              return null;
-            }, 
-            (onSavedVal) {
-              password = onSavedVal;
-            },
-            onChange: (val) {
-              setState(() {
-                password = val.toString();
-              });
-            },
-            prefixIcon: Icons.password_outlined,
-            obscureText: hidePassword,
-            suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    hidePassword = !hidePassword;
-                  });
-                },
-                color: Colors.white.withOpacity(0.7),
-                icon: Icon(
-                  hidePassword ? Icons.visibility_off : Icons.visibility,
-                ))),
-        FormTextField("confirmPassword", "Confirm password", (onValidateVal) {
-              if (onValidateVal.isEmpty) {
+        FormTextField(
+          "confirmPassword", 
+          "Confirm password", 
+          "Confirm password", 
+          (onValidateVal) {
+              if (onValidateVal != null && onValidateVal.isEmpty) {
                 return "Password can't be empty";
               } else if ((onValidateVal as String).length < 8) {
                 return "Password length must be 8 letters or more";
@@ -78,13 +54,14 @@ class _RegisterScreenState extends State<RegisterWidget> {
             (onSavedVal) {
               confirmPassword = onSavedVal;
             }, 
+            keyboardType: TextInputType.visiblePassword,
             onChange: (val) {
               setState(() {
                 confirmPassword = val.toString();
               });
             },
             prefixIcon: Icons.password_outlined,
-            obscureText: hidePassword,
+            obscureText: widget.hidePassword,
             suffixIcon: Icon(
               color: isPC ? Colors.green.withOpacity(0.7) : Colors.red.withOpacity(0.7),
               isPC ? Icons.check : Icons.close,
@@ -93,8 +70,9 @@ class _RegisterScreenState extends State<RegisterWidget> {
         FormTextField(
           "email",
           "Email",
+          "Enter Email",
           (onValidateVal) {
-            if (onValidateVal.isEmpty) {
+            if (onValidateVal != null && onValidateVal.isEmpty) {
               return "Email can't be empty";
             } else if (!(onValidateVal as String).contains("@") ||
                 !(onValidateVal).contains(".")) {
@@ -105,6 +83,7 @@ class _RegisterScreenState extends State<RegisterWidget> {
           (onSavedVal) {
             email = onSavedVal;
           },
+          keyboardType: TextInputType.emailAddress,
           prefixIcon: Icons.email_outlined,
         ),
       ],

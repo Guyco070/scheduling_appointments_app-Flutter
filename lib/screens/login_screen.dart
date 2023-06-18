@@ -59,13 +59,14 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Logo('assets/images/app_logo.jpg'),
+          const Logo('assets/images/app_logo.jpg'),
           ScreenTopic(_authMode == AuthMode.login ? 'Login' : 'Sign up'),
           FormTextField(
             "userName", 
-            "UserName",
+            "User Name",
+            "Enter User Name",
             (onValidateVal) {
-              if (onValidateVal.isEmpty) {
+              if (onValidateVal != null && onValidateVal.isEmpty) {
                 return "Username can't be empty";
               }
               return null;
@@ -76,9 +77,11 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
             prefixIcon: Icons.person,
           ),
           FormTextField(
-            "password", "Password",
+            "password", 
+            "Password",
+            "Enter Password",
             (onValidateVal) {
-              if (onValidateVal.isEmpty) {
+              if (onValidateVal != null && onValidateVal.isEmpty) {
                 return "Password can't be empty";
               } else if ((onValidateVal as String).length < 8) {
                 return "Password length must be 8 letters or more";
@@ -89,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
               password = onSavedVal;
             },
             prefixIcon: Icons.password_outlined,
+            keyboardType: TextInputType.visiblePassword,
             obscureText: hidePassword,
             suffixIcon: IconButton(
                 onPressed: () {
@@ -103,12 +107,12 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
           ),
           ExpandedSection(
             expand: _authMode == AuthMode.signup,
-            child: const RegisterWidget()
+            child: RegisterWidget(hidePassword: hidePassword,)
           ),
           SpanButton(
             alignment: Alignment.bottomRight,
             buttonText: "Forgot Password ?",
-            onTap: () => print('Forgot Password'),
+            onTap: () => _switchAuthMode(),
           ),
           const SizedBox(height: 20,),
           Center(
